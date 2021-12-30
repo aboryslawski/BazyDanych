@@ -26,5 +26,13 @@ namespace BazyDanych.Data
                 // Use ToListAsync to avoid blocking a thread
                 .AsNoTracking().ToListAsync();
         }
+
+        public Task<WeatherForecast> CreateForecastAsync(WeatherForecast objWeatherForecast)
+        {
+            _context.WeatherForecast.Add(objWeatherForecast);
+            _context.SaveChanges();
+
+            return Task.FromResult(objWeatherForecast);
+        }
     }
 }
