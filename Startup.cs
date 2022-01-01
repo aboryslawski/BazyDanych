@@ -32,7 +32,7 @@ namespace BazyDanych
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context>(options =>
+            services.AddDbContext<BazyDanychDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 

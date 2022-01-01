@@ -8,9 +8,9 @@ namespace BazyDanych.Data
 {
     public class WeatherForecastService
     {
-        private readonly AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context _context;
+        private readonly BazyDanychDbContext _context;
 
-        public WeatherForecastService(AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context context)
+        public WeatherForecastService(BazyDanychDbContext context)
         {
             _context = context;
         }
@@ -33,6 +33,45 @@ namespace BazyDanych.Data
             _context.SaveChanges();
 
             return Task.FromResult(objWeatherForecast);
+        }
+        public Task<bool> UpdateForecastAsync(WeatherForecast objWeatherForecast)
+        {
+            var existingWeatherForecast = _context.WeatherForecast
+                .FirstOrDefault(x => x.Id == objWeatherForecast.Id);
+
+            if (existingWeatherForecast != null)
+            {
+                existingWeatherForecast.Date = objWeatherForecast.Date;
+                existingWeatherForecast.Summary = objWeatherForecast.Summary;
+                existingWeatherForecast.TemperatureC = objWeatherForecast.TemperatureC;
+                existingWeatherForecast.TemperatureF = objWeatherForecast.TemperatureF;
+                _context.SaveChanges();
+            }
+
+            else
+            {
+                return Task.FromResult(false);
+            }
+
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> DeleteForecastAsync(WeatherForecast objWeatherForecast)
+        {
+            var existingWeatherForecast = _context.WeatherForecast
+                .FirstOrDefault(x => x.Id == objWeatherForecast.Id);
+
+            if (existingWeatherForecast != null)
+            {
+                _context.WeatherForecast.Remove(existingWeatherForecast);
+                _context.SaveChanges();
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
+
+            return Task.FromResult(true);
         }
     }
 }

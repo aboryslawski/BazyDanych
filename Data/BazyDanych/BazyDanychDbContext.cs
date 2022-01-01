@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BazyDanych.Data.BazyDanych
 {
-    public partial class AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context : DbContext
+    public partial class BazyDanychDbContext : DbContext
     {
-        public AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context()
+        public BazyDanychDbContext()
         {
         }
 
-        public AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context(DbContextOptions<AspnetBazydanychFE03AB7A0D1F48FA9C62B214EBB023F7Context> options)
+        public BazyDanychDbContext(DbContextOptions<BazyDanychDbContext> options)
             : base(options)
         {
         }
